@@ -2,12 +2,12 @@
 
 A simple example to gain GAN's idea fast.
 
+![](https://latex.codecogs.com/gif.latex?%5Cmin_G%5Cmax_GV%5Cleft%20%28%20D%2C%20G%20%5Cright%20%29%20%3D%20E_%7Bx%20%5Csim%20p_%7Bdata%7D%28x%29%7D%5BlogD%28x%29%5D%20&plus;%20E_%7Bz%20%5Csim%20p_%7Bz%7D%28z%29%7D%5Blog%281%20-%20D%28G%28z%29%29%29%5D)
+
 ## Generator Architecture
 ![](images/gen-architecture.png)
 
 ## Discriminator Architecture
-![](https://latex.codecogs.com/gif.latex?%5Cmin_G%5Cmax_GV%5Cleft%20%28%20D%2C%20G%20%5Cright%20%29%20%3D%20E_%7Bx%20%5Csim%20p_%7Bdata%7D%28x%29%7D%5BlogD%28x%29%5D%20&plus;%20E_%7Bz%20%5Csim%20p_%7Bz%7D%28z%29%7D%5Blog%281%20-%20D%28G%28z%29%29%29%5D)
-
 ![](images/discrim-architecture.png)
 
 ## Algorithms
