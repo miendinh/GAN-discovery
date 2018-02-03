@@ -1,0 +1,5 @@
+__pycache__
+*.md
+ops.py
+*.png
+dataset/flower_images
