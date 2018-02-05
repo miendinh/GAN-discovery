@@ -1,4 +1,5 @@
 __pycache__
+generated
 *.md
 ops.py
 dataset/flower_images

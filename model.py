@@ -5,6 +5,7 @@ import cv2
 from dataset import next_batch
 
 batch_size = 10;
+gen_size = 1;
 epochs = 3000;
 k = 21;
 Z_dimension = 100;
@@ -77,21 +78,22 @@ with tf.variable_scope(tf.get_variable_scope(), reuse = False) as scope:
     Dg_trainner = tf.train.AdamOptimizer(0.001).minimize(Dg, var_list = D_vars)
     G_trainner = tf.train.AdamOptimizer(0.001).minimize(G_loss, var_list = G_vars)
 
-noises = np.random.uniform(-1., 1., size = [batch_size, Z_dimension])
+noises = np.random.uniform(-1., 1., size = [gen_size, Z_dimension])
 
 with tf.Session() as sess:
     sess.run(tf.global_variables_initializer())
     for e in range(epochs):
         Z_random_noises = np.random.uniform(-1., 1., [batch_size, Z_dimension])
         for i in range(k):
-            images = next_batch(0, batch_size)
+            images = next_batch(i, batch_size)
             _, _, D_loss_ = sess.run([Dx_trainner, Dg_trainner, D_loss], {X : images, Z : Z_random_noises }) #is_training : True
 
         _, G_loss_ = sess.run([G_trainner, G_loss], feed_dict={Z : Z_random_noises}) #is_training : True
 
         print("G_loss = ", G_loss_, "D_loss = ", D_loss_)
 
-        if e % 100 == 0 or e == 1:
+        if e % 2 == 0:
             Z_gen, Dl, Gl = sess.run([G, D_loss, G_loss], {X: images, Z: noises})
-            plt.imshow(Z_gen[0,:,:,:].reshape(128, 128, 3))
-            plt.show()
+            #plt.imshow(Z_gen[0,:,:,:].reshape(128, 128, 3))
+            #plt.show()
+            cv2.imwrite("generated/{0:05d}.jpg".format(e), Z_gen[0,:,:,:].reshape(128, 128, 3))
