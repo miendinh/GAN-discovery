@@ -3,7 +3,6 @@ import numpy as np
 import matplotlib.pyplot as plt
 import cv2
 from dataset import DataSet
-import sys
 
 batch_size = 100;
 sample_size = 100;
@@ -111,8 +110,8 @@ with tf.Session() as sess:
             Z_gen = sess.run(G, feed_dict={Z: sample_noises})
             Z_gen = np.array(Z_gen.reshape((sample_size, 28, 28)) + 1) * 127.5
             big_image = Z_gen.reshape(10, 10, 28, 28).swapaxes(1,2).reshape(10*28, 10*28)
-            plt.imshow(big_image, cmap='gray')
-            plt.show()
+            #plt.imshow(big_image, cmap='gray')
+            #plt.show()
             cv2.imwrite("generated/{0:05d}.jpg".format(e), big_image)
 
     saver = tf.train.Saver()
