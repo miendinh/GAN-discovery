@@ -1,5 +1,13 @@
 __pycache__
 generated
+logs
+*.ckpt
 *.md
+*.jpg
+*.csv
+gan_discover.*.*
+checkpoint
 ops.py
+model2.py
+dataset2.py
 dataset/flower_images
